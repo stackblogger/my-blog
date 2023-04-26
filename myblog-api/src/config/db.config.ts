@@ -1,7 +1,13 @@
-export interface DbConfig {
+export interface ServerConfig {
   database: string;
 }
 
-export const dbConfig: DbConfig = {
-  database: process.env.DATABASE
+const getServerConfig = (): ServerConfig => {
+  return {
+    database: process.env.DATABASE_URI
+  };
 };
+
+export default getServerConfig;
+
+export type ServerConfigs = ReturnType<typeof getServerConfig>;
