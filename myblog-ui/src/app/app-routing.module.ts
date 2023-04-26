@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'post',
     loadChildren: () => import('./post/post.module').then((m) => m.PostModule)
+  },
+  {
+    path: 'auth/callback',
+    loadChildren: () => import('./auth-callback/auth-callback.module').then((m) => m.AuthCallbackModule)
   }
 ];
 

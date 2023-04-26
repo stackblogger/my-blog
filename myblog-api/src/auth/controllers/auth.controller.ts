@@ -1,7 +1,8 @@
-import { Controller, Get, Inject, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Inject, Redirect, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from '../services/auth.service';
 import { IUserService, UserService } from 'src/user/services/user.service';
+import getServerConfig from 'src/config/configurations/server.config';
 
 @Controller('auth')
 export class AuthController {
@@ -18,8 +19,10 @@ export class AuthController {
 
   @Get('google/redirect')
   @UseGuards(AuthGuard('google'))
+  @Redirect(getServerConfig().frontEndCallbackUrl)
   async googleAuthRedirect(@Req() req) {
     await this.userService.upsert(req.user);
-    return this.authService.googleLogin(req);
+    this.authService.googleLogin(req);
+    return { url: `${getServerConfig().frontEndCallbackUrl}?token=${req.user.accessToken}` };
   }
 }
