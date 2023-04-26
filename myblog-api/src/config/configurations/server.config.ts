@@ -2,10 +2,10 @@ export interface ServerConfig {
   database: string;
   host: string;
   port: number;
-  google: SocialLoginClients;
+  google: SocialLoginClient;
 }
 
-interface SocialLoginClients {
+interface SocialLoginClient {
   clientId: string;
   clientSecret: string;
 }
