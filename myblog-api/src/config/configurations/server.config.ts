@@ -4,6 +4,7 @@ export interface ServerConfig {
   port: number;
   frontEndCallbackUrl: string;
   google: SocialLoginClient;
+  jwtSecretKey: string;
 }
 
 interface SocialLoginClient {
@@ -20,7 +21,8 @@ function getServerConfig(): ServerConfig {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
-    }
+    },
+    jwtSecretKey: process.env.JWT_SECRET_KEY
   };
 }
 

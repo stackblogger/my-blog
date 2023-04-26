@@ -3,6 +3,7 @@ import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { Injectable } from '@nestjs/common';
 import getServerConfig from 'src/config/configurations/server.config';
 import { Profile } from 'passport';
+import { SocialUserModel } from '../models/social-user.model';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
@@ -16,12 +17,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   }
 
   async validate(accessToken: string, refreshToken: string, profile: Profile, done: VerifyCallback): Promise<void> {
-    const { name, emails, photos } = profile;
-    const user = {
+    const { name, emails } = profile;
+    const user: SocialUserModel = {
       email: emails[0].value,
-      firstName: name.givenName,
-      lastName: name.familyName,
-      picture: photos[0].value,
       accessToken,
       name: name.givenName + ' ' + name.familyName
     };

@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import getServerConfig from 'src/config/configurations/server.config';
+import { User } from 'src/user/models/user.model';
+
+export interface IAuthService {
+  handleLogin(user: User): string;
+}
 
 @Injectable()
-export class AuthService {
-  googleLogin(req) {
-    if (!req.user) {
-      return 'No user from google';
-    }
+export class AuthService implements IAuthService {
+  constructor(private readonly jwtService: JwtService) {}
 
-    return {
-      message: 'User information from google',
-      user: req.user
-    };
+  handleLogin(user: User) {
+    const payload = { email: user.email, sub: user._id };
+    return this.jwtService.sign(payload, { secret: getServerConfig().jwtSecretKey });
   }
 }
