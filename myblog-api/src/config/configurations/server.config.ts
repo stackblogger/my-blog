@@ -2,11 +2,11 @@ export interface ServerConfig {
   database: string;
 }
 
-const getServerConfig = (): ServerConfig => {
+function getServerConfig(): ServerConfig {
   return {
     database: process.env.DATABASE_URI
   };
-};
+}
 
 export default getServerConfig;
 
