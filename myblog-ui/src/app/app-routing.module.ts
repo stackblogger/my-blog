@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'auth/callback',
     loadChildren: () => import('./auth-callback/auth-callback.module').then((m) => m.AuthCallbackModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
   }
 ];
 
