@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,6 @@ export class LoginComponent {
   googleAuthUrl: string;
 
   constructor() {
-    this.googleAuthUrl = environment.googleAuthUrl;
+    this.googleAuthUrl = environment.apiBaseUrl + '/auth/google';
   }
 }

@@ -1,1 +1,42 @@
-<p>new-post works!</p>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Create post</h4>
+        <form [formGroup]="blogForm">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" formControlName="title" placeholder="Enter Title" />
+          </div>
+
+          <div class="form-group">
+            <label>Content</label>
+            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+            <ngx-editor
+              [editor]="editor"
+              data-testid="sample-input-hover-click"
+              [placeholder]="'Type Content here...'"
+              formControlName="body"
+            ></ngx-editor>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" class="form-control" formControlName="category" placeholder="Enter Category" />
+          </div>
+
+          <div formArrayName="tags">
+            <label>Tags</label>
+            <div *ngFor="let user of tags.controls; index as idx">
+              <input class="form-control" [formControlName]="idx" placeholder="Enter Tag" />
+              <button (click)="addTag()" class="btn btn-secondary" type="button">Add</button>
+            </div>
+          </div>
+          <button (click)="createPost()" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>

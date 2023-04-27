@@ -13,12 +13,16 @@ export class AuthService {
     this.helper = new JwtHelperService();
   }
 
-  logoutUser(): void {
+  public logoutUser(): void {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
   }
 
+  public get getAccessToken(): string | null {
+    return localStorage.getItem(ACCESS_TOKEN_KEY);
+  }
+
   public isAuthenticated(): boolean {
-    const token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    const token = this.getAccessToken;
     return !this.helper.isTokenExpired(token);
   }
 }
