@@ -8,6 +8,7 @@ import { ConvertToSlug, RandomString } from '../utils/helper';
 
 export interface IBlogService {
   findOne(slug: string): Promise<Blog>;
+  findAll(): Promise<Blog[]>;
   create(blog: Blog, user: User): Promise<Blog>;
 }
 
@@ -21,6 +22,10 @@ export class BlogService implements IBlogService {
 
   async findOne(slug: string): Promise<Blog> {
     return await this.blogRepo.findOne(slug);
+  }
+
+  async findAll(): Promise<Blog[]> {
+    return await this.blogRepo.findAll();
   }
 
   async create(blog: Blog, user: User): Promise<Blog> {

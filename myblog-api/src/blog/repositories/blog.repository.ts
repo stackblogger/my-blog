@@ -5,6 +5,7 @@ import { Blog } from '../models/blog.model';
 
 export interface IBlogRepository {
   findOne(slug: string): Promise<Blog>;
+  findAll(): Promise<Blog[]>;
   create(blog: Blog): Promise<Blog>;
 }
 
@@ -14,6 +15,10 @@ export class BlogRepository implements IBlogRepository {
 
   async findOne(slug: string): Promise<Blog> {
     return await this.blogModel.findOne({ slug }).exec();
+  }
+
+  async findAll(): Promise<Blog[]> {
+    return await this.blogModel.find().exec();
   }
 
   async create(blog: Blog): Promise<Blog> {

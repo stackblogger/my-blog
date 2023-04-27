@@ -11,16 +11,16 @@ export class BlogController {
     @Inject(UserService) private readonly userService: IUserService
   ) {}
 
-  //   @Get()
-  //   @UseGuards(AuthGuard('jwt'))
-  //   async findAll(): Promise<Blog[]> {
-  //     return this.blogService.findAll();
-  //   }
+  @Get()
+  @UseGuards(AuthGuard('jwt'))
+  async findAll(): Promise<Blog[]> {
+    return this.blogService.findAll();
+  }
 
-  //   @Get(':id')
-  //   async findOne(@Param('id') id: string): Promise<User> {
-  //     return this.userService.findOne(id);
-  //   }
+  @Get(':slug')
+  async findOne(@Param('slug') slug: string): Promise<Blog> {
+    return this.blogService.findOne(slug);
+  }
 
   @Post()
   @UseGuards(AuthGuard('jwt'))
