@@ -16,7 +16,7 @@ function blogDataGenerator(indexCounter) {
 
   fetch('http://localhost:3000/blogs', {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbWVlckBlbmdpbmVzb2Z0LmluIiwic3ViIjoiNjQ0OTgwOWU3ZmE5ZTdkNjU5MWQ5NGI4IiwiaWF0IjoxNjgyNTgzMzA4LCJleHAiOjE2ODI2Njk3MDh9.QpNrPoFupsrbLMlYQJoKuIE0y6r-25lD1zVDvLNXJi4`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImppbWN1dGU4ODc5QGdtYWlsLmNvbSIsInN1YiI6IjY0NDk3YmRjMWU1NmY2Zjc0ZGRjMmY2NiIsImlhdCI6MTY4MjYzMTY2MSwiZXhwIjoxNjg1MjIzNjYxfQ.N-uoFHoq3SPAXI0mzopKltY0jjETGQEVoMyhWzOg8Kg`,
       'Content-type': 'application/json'
     },
     method: 'POST',
