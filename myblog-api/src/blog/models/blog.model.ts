@@ -4,7 +4,7 @@ import { Tag } from './tag.model';
 
 export interface Blog extends Document {
   readonly title: string;
-  readonly slug: string;
+  slug: string;
   readonly body: string;
   author: {
     name: string;
