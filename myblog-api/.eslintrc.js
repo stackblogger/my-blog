@@ -13,5 +13,7 @@ module.exports = {
     jest: true
   },
   ignorePatterns: ['.eslintrc.js'],
-  rules: {}
+  rules: {
+    'no-debugger': 'error'
+  }
 };
