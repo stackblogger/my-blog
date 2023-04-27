@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lorem-ipsum": "^2.0.8",
+    "node-fetch": "^2.6.9"
+  }
+}
