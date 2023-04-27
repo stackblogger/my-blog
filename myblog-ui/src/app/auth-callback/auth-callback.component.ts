@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ACCESS_TOKEN_KEY } from '../enums/constants';
 
 @Component({
   selector: 'app-auth-callback',
@@ -12,7 +13,7 @@ export class AuthCallbackComponent {
       const accessToken = params['token'];
 
       if (accessToken) {
-        localStorage.setItem('token', accessToken);
+        localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
         this.router.navigate(['/dashboard']);
       } else {
         alert('Invalid login detected. Please re-login to continue.');
