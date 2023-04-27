@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 
 export const BlogSchema = new mongoose.Schema({
   title: { type: String, required: [true, 'Title us required'] },
-  slug: { type: String, required: [true, 'Slug is required'] },
+  slug: { type: String, required: [true, 'Slug is required'], index: true },
   body: { type: String },
   author: {
     required: [true, 'Author is required.'],
