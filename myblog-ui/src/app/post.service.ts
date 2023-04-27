@@ -13,11 +13,36 @@ export class PostService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {
     this.headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${authService.getAccessToken}`)
+      .set('Authorization', `Bearer ${this.authService.getAccessToken}`)
       .set('Content-type', 'application/json');
   }
 
+  /**
+   * Create Blog Post Endpoint
+   *
+   * @param blog {BlogModel} - Blog Payload
+   * @returns {BlogModel} Created Blog Data
+   */
   createPost(blog: BlogModel): Observable<BlogModel> {
     return this.httpClient.post<BlogModel>(environment.apiBaseUrl + '/blogs', blog, { headers: this.headers });
+  }
+
+  /**
+   * Get All Blogs created by the logged in user
+   *
+   * @returns {BlogModel[]}
+   */
+  getAllPosts(): Observable<BlogModel[]> {
+    return this.httpClient.get<BlogModel[]>(environment.apiBaseUrl + '/blogs', { headers: this.headers });
+  }
+
+  /**
+   * This endpoint is a public url. It doesn't require any authentication mechanism
+   *
+   * @param slug post slug text
+   * @returns {BlogModel} Blog Data
+   */
+  getSinglePost(slug: string): Observable<BlogModel> {
+    return this.httpClient.get<BlogModel>(environment.apiBaseUrl + `/blogs/${slug}`);
   }
 }

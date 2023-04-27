@@ -1,1 +1,23 @@
-<p>dashboard works!</p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div>
+      <a routerLink="/new-post">Create new post</a>
+    </div>
+    <ul class="list-unstyled">
+      <li class="media" *ngFor="let post of posts">
+        <div class="media-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a [routerLink]="['/post', post.slug]">{{ post.title }}</a>
+              </h5>
+              <div [innerHTML]="post.body | truncate : 600 | safeHtml">...</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-2"></div>
+</div>

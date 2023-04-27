@@ -3,6 +3,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
+        <a routerLink="/dashboard">Back to dashboard</a>
         <h4 class="card-title">Create post</h4>
         <form [formGroup]="blogForm">
           <div class="form-group">
@@ -21,17 +22,19 @@
             ></ngx-editor>
           </div>
 
-          <div class="form-group">
+          <div formGroupName="category" class="form-group">
             <label>Category</label>
-            <input type="text" class="form-control" formControlName="category" placeholder="Enter Category" />
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter Category" />
           </div>
 
           <div formArrayName="tags">
             <label>Tags</label>
             <div *ngFor="let user of tags.controls; index as idx">
-              <input class="form-control" [formControlName]="idx" placeholder="Enter Tag" />
-              <button (click)="addTag()" class="btn btn-secondary" type="button">Add</button>
+              <div [formGroupName]="idx">
+                <input class="form-control" formControlName="name" placeholder="Enter Tag" />
+              </div>
             </div>
+            <button (click)="addTag()" class="btn btn-secondary" type="button">Add</button>
           </div>
           <button (click)="createPost()" class="btn btn-primary" type="submit">Submit</button>
         </form>

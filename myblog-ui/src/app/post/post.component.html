@@ -1,1 +1,17 @@
-<p>post works!</p>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div>
+      <a routerLink="/dashboard">Back to dashboard</a>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">
+          {{ post.title }}
+        </h1>
+        <div [innerHTML]="post.body | safeHtml"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>
