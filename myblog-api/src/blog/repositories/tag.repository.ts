@@ -12,6 +12,16 @@ export class TagRepository implements ITagRepository {
   constructor(@InjectModel('Tag') private readonly tagModel: Model<Tag>) {}
 
   async create(tags: Tag[]): Promise<Tag[]> {
-    return await this.tagModel.insertMany(tags);
+    await this.tagModel.bulkWrite(
+      tags.map((tag) => ({
+        updateOne: {
+          filter: { name: tag.name },
+          update: { $set: tag },
+          upsert: true
+        }
+      }))
+    );
+
+    return await this.tagModel.find({ name: { $in: tags.map((t) => t.name) } });
   }
 }

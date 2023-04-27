@@ -12,7 +12,6 @@ export class CategoryRepository implements ICategoryRepository {
   constructor(@InjectModel('Category') private readonly categoryModel: Model<Category>) {}
 
   async create(category: Category): Promise<Category> {
-    const createdData = new this.categoryModel(category);
-    return await createdData.save();
+    return this.categoryModel.findOneAndUpdate({ name: category.name }, category, { upsert: true }).exec();
   }
 }
