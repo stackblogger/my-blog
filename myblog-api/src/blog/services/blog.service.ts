@@ -4,9 +4,10 @@ import { ITagRepository, TagRepository } from '../repositories/tag.repository';
 import { BlogRepository, IBlogRepository } from '../repositories/blog.repository';
 import { Blog } from '../models/blog.model';
 import { User } from 'src/user/models/user.model';
-import { ConvertToSlug } from '../utils/helper';
+import { ConvertToSlug, RandomString } from '../utils/helper';
 
 export interface IBlogService {
+  findOne(slug: string): Promise<Blog>;
   create(blog: Blog, user: User): Promise<Blog>;
 }
 
@@ -18,10 +19,14 @@ export class BlogService implements IBlogService {
     @Inject(BlogRepository) private readonly blogRepo: IBlogRepository
   ) {}
 
+  async findOne(slug: string): Promise<Blog> {
+    return await this.blogRepo.findOne(slug);
+  }
+
   async create(blog: Blog, user: User): Promise<Blog> {
     blog.author = user;
     blog.timestamp = new Date();
-    blog.slug = ConvertToSlug(blog.title);
+    blog.slug = ConvertToSlug(blog.title) + '-' + RandomString(10);
     if (blog.category) {
       blog.category.slug = ConvertToSlug(blog.category.name);
       const category = await this.categoryRepo.create(blog.category);

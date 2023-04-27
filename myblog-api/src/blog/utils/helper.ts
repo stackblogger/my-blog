@@ -9,3 +9,13 @@ export function ConvertToSlug(str: string): string {
     .trim() // remove any spaces from start or end
     .replace(/^-/, ''); // remove first - if there is any
 }
+
+const ALPHA_STRING = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+export function RandomString(length: number): string {
+  let s = '';
+  while (s.length < length) {
+    s += ALPHA_STRING.charAt((Math.random() * 62) | 0);
+  }
+  return s.toLowerCase();
+}

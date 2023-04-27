@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Blog } from '../models/blog.model';
 
 export interface IBlogRepository {
+  findOne(slug: string): Promise<Blog>;
   create(blog: Blog): Promise<Blog>;
 }
 
@@ -11,11 +12,12 @@ export interface IBlogRepository {
 export class BlogRepository implements IBlogRepository {
   constructor(@InjectModel('Blog') private readonly blogModel: Model<Blog>) {}
 
+  async findOne(slug: string): Promise<Blog> {
+    return await this.blogModel.findOne({ slug }).exec();
+  }
+
   async create(blog: Blog): Promise<Blog> {
-    const payload = {
-      ...blog
-    };
-    const createdBlog = new this.blogModel(payload);
+    const createdBlog = new this.blogModel(blog);
     return await createdBlog.save();
   }
 }
