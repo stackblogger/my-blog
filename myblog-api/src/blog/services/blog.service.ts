@@ -18,6 +18,16 @@ export class BlogService implements IBlogService {
   ) {}
 
   async create(blog: Blog, user: User): Promise<Blog> {
+    blog.author = user;
+    blog.timestamp = new Date();
+    if (blog.category) {
+      const category = await this.categoryRepo.create(blog.category);
+      blog.category = category;
+    }
+    if (blog.tags && blog.tags.length > 0) {
+      const tags = await this.tagRepo.create(blog.tags);
+      blog.tags = tags;
+    }
     return await this.blogRepo.create(blog);
   }
 }

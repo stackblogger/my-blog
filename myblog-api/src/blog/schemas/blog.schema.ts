@@ -22,13 +22,11 @@ export const BlogSchema = new mongoose.Schema({
     ]
   },
   category: {
-    type: [
-      {
-        _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Categories' },
-        name: { type: String },
-        slug: { type: String }
-      }
-    ]
+    type: {
+      _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Categories' },
+      name: { type: String },
+      slug: { type: String }
+    }
   },
   timestamp: { type: Date, required: true }
 });

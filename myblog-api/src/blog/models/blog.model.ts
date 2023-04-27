@@ -1,19 +1,15 @@
 import { Document } from 'mongoose';
+import { Category } from './category.model';
+import { Tag } from './tag.model';
 
 export interface Blog extends Document {
   readonly title: string;
   readonly slug: string;
   readonly body: string;
-  readonly author: {
+  author: {
     name: string;
   };
-  readonly tags: {
-    name: string;
-    slug: string;
-  }[];
-  readonly category: {
-    name: string;
-    slug: string;
-  };
-  readonly timestamp: Date;
+  tags: Tag[];
+  category: Category;
+  timestamp: Date;
 }

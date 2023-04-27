@@ -4,15 +4,14 @@ import { Model } from 'mongoose';
 import { Tag } from '../models/tag.model';
 
 export interface ITagRepository {
-  create(tag: Tag): Promise<Tag>;
+  create(tags: Tag[]): Promise<Tag[]>;
 }
 
 @Injectable()
 export class TagRepository implements ITagRepository {
   constructor(@InjectModel('Tag') private readonly tagModel: Model<Tag>) {}
 
-  async create(tag: Tag): Promise<Tag> {
-    const createdTag = new this.tagModel(tag);
-    return await createdTag.save();
+  async create(tags: Tag[]): Promise<Tag[]> {
+    return await this.tagModel.insertMany(tags);
   }
 }

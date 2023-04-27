@@ -25,7 +25,6 @@ export class BlogController {
   @Post()
   @UseGuards(AuthGuard('jwt'))
   async create(@Body() blog: Blog, @Req() req): Promise<Blog> {
-    debugger;
     const user = await this.userService.findOne(req.user.userId);
     return this.blogService.create(blog, user);
   }
