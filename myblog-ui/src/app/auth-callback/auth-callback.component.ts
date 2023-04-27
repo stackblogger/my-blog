@@ -12,6 +12,7 @@ export class AuthCallbackComponent {
       const accessToken = params['token'];
 
       if (accessToken) {
+        localStorage.setItem('token', accessToken);
         this.router.navigate(['/dashboard']);
       } else {
         alert('Invalid login detected. Please re-login to continue.');
