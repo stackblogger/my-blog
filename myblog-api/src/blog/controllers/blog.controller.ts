@@ -1,11 +1,15 @@
-import { Controller, Get, Post, Body, Param, Inject, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Inject, UseGuards, Req } from '@nestjs/common';
 import { BlogService, IBlogService } from '../services/blog.service';
 import { Blog } from '../models/blog.model';
 import { AuthGuard } from '@nestjs/passport';
+import { IUserService, UserService } from 'src/user/services/user.service';
 
 @Controller('blogs')
 export class BlogController {
-  constructor(@Inject(BlogService) private readonly blogService: IBlogService) {}
+  constructor(
+    @Inject(BlogService) private readonly blogService: IBlogService,
+    @Inject(UserService) private readonly userService: IUserService
+  ) {}
 
   //   @Get()
   //   @UseGuards(AuthGuard('jwt'))
@@ -20,7 +24,9 @@ export class BlogController {
 
   @Post()
   @UseGuards(AuthGuard('jwt'))
-  async create(@Body() blog: Blog): Promise<Blog> {
-    return this.blogService.create(blog);
+  async create(@Body() blog: Blog, @Req() req): Promise<Blog> {
+    debugger;
+    const user = await this.userService.findOne(req.user.userId);
+    return this.blogService.create(blog, user);
   }
 }

@@ -12,7 +12,10 @@ export class BlogRepository implements IBlogRepository {
   constructor(@InjectModel('Blog') private readonly blogModel: Model<Blog>) {}
 
   async create(blog: Blog): Promise<Blog> {
-    const createdBlog = new this.blogModel(blog);
+    const payload = {
+      ...blog
+    };
+    const createdBlog = new this.blogModel(payload);
     return await createdBlog.save();
   }
 }
