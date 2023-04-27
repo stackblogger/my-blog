@@ -26,7 +26,9 @@ export class PostComponent implements OnInit {
 
   private getSingleBlog() {
     this.postService.getSinglePost(this.slug).subscribe((data) => {
-      this.post = data;
+      if (data) {
+        this.post = data;
+      }
     });
   }
 }

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "lorem-ipsum": "^2.0.8",
+    "mongoose": "^7.1.0",
     "node-fetch": "^2.6.9"
   }
 }
