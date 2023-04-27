@@ -13,8 +13,8 @@ export class BlogController {
 
   @Get()
   @UseGuards(AuthGuard('jwt'))
-  async findAll(): Promise<Blog[]> {
-    return this.blogService.findAll();
+  async findAll(@Req() req): Promise<Blog[]> {
+    return this.blogService.findAll(req.user.userId);
   }
 
   @Get(':slug')

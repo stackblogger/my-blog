@@ -5,7 +5,7 @@ import { Blog } from '../models/blog.model';
 
 export interface IBlogRepository {
   findOne(slug: string): Promise<Blog>;
-  findAll(): Promise<Blog[]>;
+  findAll(author: string): Promise<Blog[]>;
   create(blog: Blog): Promise<Blog>;
 }
 
@@ -17,8 +17,8 @@ export class BlogRepository implements IBlogRepository {
     return await this.blogModel.findOne({ slug }).exec();
   }
 
-  async findAll(): Promise<Blog[]> {
-    return await this.blogModel.find().exec();
+  async findAll(author: string): Promise<Blog[]> {
+    return await this.blogModel.find({ 'author._id': author }).exec();
   }
 
   async create(blog: Blog): Promise<Blog> {
