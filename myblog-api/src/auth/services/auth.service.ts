@@ -11,7 +11,7 @@ export interface IAuthService {
 export class AuthService implements IAuthService {
   constructor(private readonly jwtService: JwtService) {}
 
-  handleLogin(user: User) {
+  handleLogin(user: User): string {
     const payload = { email: user.email, sub: user._id };
     return this.jwtService.sign(payload, { secret: getServerConfig().jwtSecretKey });
   }

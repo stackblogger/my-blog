@@ -17,4 +17,21 @@ describe('GoogleStrategy', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('validate', () => {
+    it('should format data and move to next middleware', async () => {
+      await service.validate(
+        'some-token',
+        '',
+        {
+          name: { givenName: 'Jameer', familyName: 'Khan' },
+          emails: [{ value: 'jameer@test.com' }],
+          provider: 'Google',
+          id: 'some-id',
+          displayName: 'Jameer'
+        },
+        jest.fn
+      );
+    });
+  });
 });

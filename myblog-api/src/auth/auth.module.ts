@@ -3,8 +3,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
 import { GoogleStrategy } from './strategies/google.strategy';
-import { UserModule } from 'src/user/user.module';
-import getServerConfig from 'src/config/configurations/server.config';
+import { UserModule } from '../user/user.module';
+import getServerConfig from '../config/configurations/server.config';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule } from '@nestjs/config';
 

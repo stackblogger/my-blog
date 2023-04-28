@@ -14,6 +14,7 @@ const blog = {
 };
 const authorId = '644af9095fabb9e3d0d76f54';
 const user = { name: 'Jameer', _id: authorId };
+const authenticatedReq = { user: { userId: authorId } };
 
 describe('BlogController', () => {
   let controller: BlogController;
@@ -55,9 +56,10 @@ describe('BlogController', () => {
 
   describe('findAll', () => {
     it('should get paginated blogs', async () => {
-      when(mockedBlogService.findAll(authorId, { pageSize: 10, currentPage: 1 })).thenResolve([blog] as Blog[]);
+      const pagination = { pageSize: 10, currentPage: 1 };
+      when(mockedBlogService.findAll(authorId, pagination)).thenResolve([blog] as Blog[]);
 
-      const response = await controller.findAll({ pageSize: 10, currentPage: 1 }, { user: { userId: authorId } });
+      const response = await controller.findAll(pagination, authenticatedReq);
       expect(response).toMatchObject([blog]);
     });
   });
@@ -77,7 +79,7 @@ describe('BlogController', () => {
       const userResponse = await mockedUserService.findOne(authorId);
       when(mockedBlogService.create(blog as Blog, userResponse)).thenResolve(blog as Blog);
 
-      const response = await controller.create(blog as Blog, { user: { userId: authorId } });
+      const response = await controller.create(blog as Blog, authenticatedReq);
       expect(response).toMatchObject(blog);
     });
   });
