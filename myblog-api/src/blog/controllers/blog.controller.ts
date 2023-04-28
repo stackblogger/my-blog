@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Inject, UseGuards, Req, Query } fro
 import { BlogService, IBlogService } from '../services/blog.service';
 import { Blog } from '../models/blog.model';
 import { AuthGuard } from '@nestjs/passport';
-import { IUserService, UserService } from 'src/user/services/user.service';
+import { IUserService, UserService } from '../../user/services/user.service';
 import { Pagination } from '../models/pagination.model';
 
 @Controller('blogs')

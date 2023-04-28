@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import getServerConfig from 'src/config/configurations/server.config';
-import { User } from 'src/user/models/user.model';
+import getServerConfig from '../../config/configurations/server.config';
+import { User } from '../../user/models/user.model';
 
 export interface IAuthService {
   handleLogin(user: User): string;

@@ -1,7 +1,7 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, VerifyCallback } from 'passport-google-oauth20';
 import { Injectable } from '@nestjs/common';
-import getServerConfig from 'src/config/configurations/server.config';
+import getServerConfig from '../../config/configurations/server.config';
 import { Profile } from 'passport';
 import { SocialUserModel } from '../models/social-user.model';
 

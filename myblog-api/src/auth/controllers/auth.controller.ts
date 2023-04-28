@@ -1,8 +1,8 @@
 import { Controller, Get, Inject, Redirect, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService, IAuthService } from '../services/auth.service';
-import { IUserService, UserService } from 'src/user/services/user.service';
-import getServerConfig from 'src/config/configurations/server.config';
+import { IUserService, UserService } from '../../user/services/user.service';
+import getServerConfig from '../../config/configurations/server.config';
 
 @Controller('auth')
 export class AuthController {

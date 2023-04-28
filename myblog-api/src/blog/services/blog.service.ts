@@ -3,7 +3,7 @@ import { CategoryRepository, ICategoryRepository } from '../repositories/categor
 import { ITagRepository, TagRepository } from '../repositories/tag.repository';
 import { BlogRepository, IBlogRepository } from '../repositories/blog.repository';
 import { Blog } from '../models/blog.model';
-import { User } from 'src/user/models/user.model';
+import { User } from '../../user/models/user.model';
 import { ConvertToSlug, RandomString } from '../utils/helper';
 import { Pagination } from '../models/pagination.model';
 
