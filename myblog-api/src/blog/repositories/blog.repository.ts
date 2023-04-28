@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Blog } from '../models/blog.model';
+import { Pagination } from '../models/pagination.model';
 
 export interface IBlogRepository {
   findOne(slug: string): Promise<Blog>;
-  findAll(author: string): Promise<Blog[]>;
+  findAll(author: string, pagination: Pagination): Promise<Blog[]>;
   create(blog: Blog): Promise<Blog>;
 }
 
@@ -17,8 +18,13 @@ export class BlogRepository implements IBlogRepository {
     return await this.blogModel.findOne({ slug }).exec();
   }
 
-  async findAll(author: string): Promise<Blog[]> {
-    return await this.blogModel.find({ 'author._id': author }).exec();
+  async findAll(author: string, pagination: Pagination): Promise<Blog[]> {
+    return await this.blogModel
+      .find({ 'author._id': author })
+      .limit(pagination.pageSize)
+      .skip(pagination.currentPage)
+      .sort({ timestamp: -1 })
+      .exec();
   }
 
   async create(blog: Blog): Promise<Blog> {

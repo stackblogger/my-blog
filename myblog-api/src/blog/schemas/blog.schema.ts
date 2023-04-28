@@ -7,7 +7,12 @@ export const BlogSchema = new mongoose.Schema({
   author: {
     required: [true, 'Author is required.'],
     type: {
-      _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: [true, 'Author _id is required'] },
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+        required: [true, 'Author _id is required'],
+        index: true
+      },
       name: { type: String, required: [true, 'Author name is required.'] }
     }
   },
@@ -16,7 +21,7 @@ export const BlogSchema = new mongoose.Schema({
     type: [
       {
         _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Tags' },
-        name: { type: String },
+        name: { type: String, index: true },
         slug: { type: String }
       }
     ]
@@ -24,9 +29,9 @@ export const BlogSchema = new mongoose.Schema({
   category: {
     type: {
       _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Categories' },
-      name: { type: String },
+      name: { type: String, index: true },
       slug: { type: String }
     }
   },
-  timestamp: { type: Date, required: true }
+  timestamp: { type: Date, required: true, index: true }
 });

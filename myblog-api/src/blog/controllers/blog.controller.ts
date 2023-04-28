@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Param, Inject, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Inject, UseGuards, Req, Query } from '@nestjs/common';
 import { BlogService, IBlogService } from '../services/blog.service';
 import { Blog } from '../models/blog.model';
 import { AuthGuard } from '@nestjs/passport';
 import { IUserService, UserService } from 'src/user/services/user.service';
+import { Pagination } from '../models/pagination.model';
 
 @Controller('blogs')
 export class BlogController {
@@ -13,8 +14,8 @@ export class BlogController {
 
   @Get()
   @UseGuards(AuthGuard('jwt'))
-  async findAll(@Req() req): Promise<Blog[]> {
-    return this.blogService.findAll(req.user.userId);
+  async findAll(@Query() pagination: Pagination, @Req() req): Promise<Blog[]> {
+    return this.blogService.findAll(req.user.userId, pagination);
   }
 
   @Get(':slug')

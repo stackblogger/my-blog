@@ -5,10 +5,11 @@ import { BlogRepository, IBlogRepository } from '../repositories/blog.repository
 import { Blog } from '../models/blog.model';
 import { User } from 'src/user/models/user.model';
 import { ConvertToSlug, RandomString } from '../utils/helper';
+import { Pagination } from '../models/pagination.model';
 
 export interface IBlogService {
   findOne(slug: string): Promise<Blog>;
-  findAll(author: string): Promise<Blog[]>;
+  findAll(author: string, pagination: Pagination): Promise<Blog[]>;
   create(blog: Blog, user: User): Promise<Blog>;
 }
 
@@ -24,8 +25,8 @@ export class BlogService implements IBlogService {
     return await this.blogRepo.findOne(slug);
   }
 
-  async findAll(author: string): Promise<Blog[]> {
-    return await this.blogRepo.findAll(author);
+  async findAll(author: string, pagination: Pagination): Promise<Blog[]> {
+    return await this.blogRepo.findAll(author, pagination);
   }
 
   async create(blog: Blog, user: User): Promise<Blog> {
