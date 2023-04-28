@@ -4,8 +4,8 @@
     <div>
       <a routerLink="/new-post">Create new post</a>
     </div>
-    <ul class="list-unstyled">
-      <li class="media" *ngFor="let post of posts">
+    <ul class="list-unstyled blogs">
+      <li class="media" *ngFor="let post of items$ | async">
         <div class="media-body">
           <div class="card">
             <div class="card-body">
