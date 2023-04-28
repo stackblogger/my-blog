@@ -30,10 +30,15 @@ export class PostService {
   /**
    * Get All Blogs created by the logged in user
    *
-   * @returns {BlogModel[]}
+   * @param pageSize Page Size used for Pagination
+   * @param currentPage Current Page Number
+   * @returns {BlogModel[]} Blogs Array
    */
-  getAllPosts(): Observable<BlogModel[]> {
-    return this.httpClient.get<BlogModel[]>(environment.apiBaseUrl + '/blogs', { headers: this.headers });
+  getAllPosts(pageSize: number, currentPage: number): Observable<BlogModel[]> {
+    return this.httpClient.get<BlogModel[]>(
+      `${environment.apiBaseUrl}/blogs?pageSize=${pageSize}&currentPage=${currentPage}`,
+      { headers: this.headers }
+    );
   }
 
   /**

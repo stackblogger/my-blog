@@ -9,6 +9,8 @@ import { BlogModel } from '../models/post.model';
 })
 export class DashboardComponent implements OnInit {
   posts: BlogModel[];
+  pageSize: number = 10;
+  currentPage: number = 1;
 
   constructor(private postService: PostService) {
     this.posts = [];
@@ -19,7 +21,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private getAllPosts(): void {
-    this.postService.getAllPosts().subscribe((data) => {
+    this.postService.getAllPosts(this.pageSize, this.currentPage).subscribe((data) => {
       this.posts = data;
     });
   }
