@@ -19,10 +19,12 @@ export class BlogRepository implements IBlogRepository {
   }
 
   async findAll(author: string, pagination: Pagination): Promise<Blog[]> {
+    pagination.currentPage = pagination.currentPage || 1;
+    pagination.currentPage -= 1;
     return await this.blogModel
       .find({ 'author._id': author })
       .limit(pagination.pageSize)
-      .skip(pagination.currentPage)
+      .skip(pagination.currentPage * pagination.pageSize)
       .sort({ timestamp: -1 })
       .exec();
   }
