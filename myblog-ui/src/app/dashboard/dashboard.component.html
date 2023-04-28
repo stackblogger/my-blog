@@ -3,6 +3,8 @@
   <div class="col-md-8">
     <div>
       <a routerLink="/new-post">Create new post</a>
+      &nbsp;&nbsp;
+      <a href="javascript:void(0)" (click)="logout()">Logout</a>
     </div>
     <ul class="list-unstyled blogs">
       <li class="media" *ngFor="let post of items$ | async">
@@ -12,6 +14,17 @@
               <h5 class="card-title">
                 <a [routerLink]="['/post', post.slug]">{{ post.title }}</a>
               </h5>
+              <div>
+                <b>{{ post.category.name }}</b>
+                &nbsp;&nbsp;
+                <span *ngFor="let tag of post.tags">{{ tag.name }} &nbsp;</span>
+              </div>
+              <div>
+                <span>{{ post.author.name }}</span
+                >&nbsp;
+                <span>{{ post.timestamp | date : "medium" : "UTC +5:30" }}</span>
+              </div>
+              <hr />
               <div [innerHTML]="post.body | truncate : 600 | safeHtml">...</div>
             </div>
           </div>

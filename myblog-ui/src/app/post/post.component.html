@@ -4,11 +4,22 @@
     <div *ngIf="isLoggedIn">
       <a routerLink="/dashboard">Back to dashboard</a>
     </div>
-    <div class="card">
+    <div class="card" *ngIf="post">
       <div class="card-body">
         <h1 class="card-title">
           {{ post.title }}
         </h1>
+        <div>
+          <b *ngIf="post.category">{{ post.category.name }}</b>
+          &nbsp;&nbsp;
+          <span *ngFor="let tag of post.tags">{{ tag.name }} &nbsp;</span>
+        </div>
+        <div>
+          <span *ngIf="post.author">{{ post.author.name }}</span
+          >&nbsp;
+          <span>{{ post.timestamp | date : "medium" : "UTC +5:30" }}</span>
+        </div>
+        <hr />
         <div *ngIf="post.body" [innerHTML]="post.body | safeHtml"></div>
       </div>
     </div>

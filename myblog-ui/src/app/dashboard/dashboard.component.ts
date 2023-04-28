@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, fromEvent, map, forkJoin, take } from 'rxjs';
 import { PostService } from '../post.service';
 import { BlogModel } from '../models/post.model';
+import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +16,7 @@ export class DashboardComponent implements OnInit {
   pageSize: number = 10;
   currentPage: number = 1;
 
-  constructor(private postService: PostService) {}
+  constructor(private router: Router, private postService: PostService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getAllPosts();
@@ -44,5 +46,10 @@ export class DashboardComponent implements OnInit {
         );
       }
     });
+  }
+
+  logout(): void {
+    this.authService.logoutUser();
+    this.router.navigate(['/login']);
   }
 }
