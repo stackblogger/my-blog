@@ -17,4 +17,13 @@ describe('JwtStrategy', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  describe('validate', () => {
+    it('should format data and move to next middleware', async () => {
+      await service.validate({
+        email: 'jameer@test.com',
+        sub: 'some-id'
+      });
+    });
+  });
 });
