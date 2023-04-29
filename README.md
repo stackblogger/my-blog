@@ -4,7 +4,7 @@ A blog application where users create and manage their blogs. The application's 
 
 Intended person to access this repo: [Mr Sanjay Dandekar](mailto:sanjay.dandekar@jktech.com)
 
-## Steps to FrontEnd and BackEnd Applications
+## Steps to Run FrontEnd and BackEnd Applications
 
 Follow the steps to run both the applications on local:
 
