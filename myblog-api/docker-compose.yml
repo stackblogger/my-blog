@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  db:
+    image: mongo:latest
+    ports:
+      - 127.0.0.1:27017:27017
+    restart: unless-stopped
+
+  web:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 127.0.0.1:3000:3000
+    links:
+      - "db:myblog-mongo"
+    restart: unless-stopped
