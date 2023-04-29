@@ -10,15 +10,17 @@ Follow the steps to run both the applications on local:
 
 ### Run Back End
 
-1. Install modules ```npm install```
-2. Setup the `.env` file with the reference of this [example.env](/myblog-api/example.env) file
-3. Run NestJs dev command ```npm run start:dev```
+1. ```cd myblog-api```
+2. Install modules ```npm install```
+3. Setup the `.env` file with the reference of this [example.env](/myblog-api/example.env) file
+4. Run NestJs dev command ```npm run start:dev```
 
 ### Run Front End
 
-1. Install modules ```npm install```
-2. Run angular serve command ```ng s```
-3. Open [http://localhost:4200](http://localhost:4200) in browser
+1. ```cd myblog-ui```
+2. Install modules ```npm install```
+3. Run angular serve command ```ng s```
+4. Open [http://localhost:4200](http://localhost:4200) in browser
 
 Login Page
 
