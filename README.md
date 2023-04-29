@@ -11,7 +11,7 @@ Follow the steps to run both the applications on local:
 ### Run Back End
 
 1. Install modules ```npm install```
-2. Setup the `.env` [file](/myblog-api/example.env)
+2. Setup the `.env` file with the reference of this [example.env](/myblog-api/example.env) file
 3. Run NestJs dev command ```npm run start:dev```
 
 ### Run Front End
