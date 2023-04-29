@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json --force-exit",
+    "ui-build": "(if exist ..\\myblog-ui\\dist rmdir ..\\myblog-ui\\dist /s /q) && cd ..\\myblog-ui && ng build && move .\\dist ..\\myblog-api"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -27,6 +28,7 @@
     "@nestjs/mongoose": "^9.2.2",
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/serve-static": "^3.0.1",
     "mongoose": "^7.0.5",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
