@@ -1,8 +1,6 @@
 # my-blog
 
-A blog application where users create and manage their blogs. The application's intent is to be used in JK Technosoft Interview Process.
-
-Intended person to access this repo: [Mr Sanjay Dandekar](mailto:sanjay.dandekar@jktech.com)
+A blog application where users create and manage their blogs.
 
 ## Steps to Run FrontEnd and BackEnd Applications
 
