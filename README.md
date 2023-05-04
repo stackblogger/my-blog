@@ -42,7 +42,7 @@ Blog Detail page. Its a public page.
 
 ## Repositories
 
-I have built an UI Application in Angular, Backend Service in NestJs, Api Performance Load Tester Script in Python with the help of Locus and finally a Bulk Dummy Data Generator script in Node.Js.
+I have built an UI Application in Angular, Backend Service in NestJs, Api Performance Load Tester Script in Python with the help of Locust and finally a Bulk Dummy Data Generator script in Node.Js.
 
 Let's start with discussing each of the applications with their features.
 
@@ -93,11 +93,11 @@ I have written unit test cases to covers 95% of the backend codes.
 
 I have setup Locust performance load tester script in Python.
 
-Steps to run the Locus script:
+Steps to run the Locust script:
 
 1. Install Python
-2. Install Locus using command ```pip3 install locus```
-3. Run Locus command ```locus```. It will run the script and you can open the url in browser to configure the host and requests per second value.
+2. Install Locust using command ```pip3 install locust```
+3. Run Locust command ```locust```. It will run the script and you can open the url in browser to configure the host and requests per second value.
 4. [More details on setup](https://docs.locust.io/en/stable/installation.html).
 
 Check the [url here](/static/locust-report.html) that shows a detailed report about the performance load tested locally.
