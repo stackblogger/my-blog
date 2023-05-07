@@ -1,6 +1,6 @@
 # my-blog
 
-A blog application where users create and manage their blogs.
+CRUD Blog in Angular 15 and NestJs with MongoDB and Google Authentication. It has factory method design pattern and unit tests coverage over 95%.
 
 ## Steps to Run FrontEnd and BackEnd Applications
 
